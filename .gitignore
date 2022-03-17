@@ -1,0 +1,10 @@
+/bower_components
+/build
+/dist/demo
+/node_modules
+.vscode
+.idea
+*.iml
+*.ipr
+yarn.lock
+*.swp
