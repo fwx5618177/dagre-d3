@@ -114,7 +114,46 @@ g.setEdge("hford",     "lwilson");
 g.setEdge("lwilson",   "kbacon");
 ```
 
-下一步dagre配置这些节点和边
+下一步, dagre配置这些节点和边:
 ```js
 dagre.layout(g);
 ```
+
+图标的布局信息将因配置而更新。节点将会获得以下属性:
+- x - 节点中心的x坐标
+- y - 节点中心的y坐标
+
+边线获取的'顶点'属性, 其中包括边缘的控制点坐标，以及节点和线相交的点，假设为矩形:
+- x - 边线中, 此弯曲部分的中心的x坐标
+- y - 边线中, 此弯曲部分的中心的y坐标
+
+为上述的对象生成以下布局:
+```js
+g.nodes().forEach(v => console.log(`Node: ${v}: ${JSON.stringify(g.node(v))}`));
+
+g.nodes().forEach(e => console.log(`Edge ${e.v} -> ${e.w} : ${JSON.stringify(g.edge(e))}`));
+```
+
+打印结果:
+```shell
+Node kspacey: {"label":"Kevin Spacey","width":144,"height":100,"x":80,"y":50}
+Node swilliams: {"label":"Saul Williams","width":160,"height":100,"x":80,"y":200}
+Node bpitt: {"label":"Brad Pitt","width":108,"height":100,"x":264,"y":200}
+Node hford: {"label":"Harrison Ford","width":168,"height":100,"x":440,"y":50}
+Node lwilson: {"label":"Luke Wilson","width":144,"height":100,"x":440,"y":200}
+Node kbacon: {"label":"Kevin Bacon","width":121,"height":100,"x":264,"y":350}
+
+Edge kspacey -> swilliams: {"points":[{"x":80,"y":100},{"x":80,"y":125},{"x":80,"y":150}]}
+Edge swilliams -> kbacon: {"points":[{"x":80,"y":250},{"x":80,"y":275},{"x":203.5,"y":325.3396739130435}]}
+Edge bpitt -> kbacon: {"points":[{"x":264,"y":250},{"x":264,"y":275},{"x":264,"y":300}]}
+Edge hford -> lwilson: {"points":[{"x":440,"y":100},{"x":440,"y":125},{"x":440,"y":150}]}
+Edge lwilson -> kbacon: {"points":[{"x":440,"y":250},{"x":440,"y":275},{"x":324.5,"y":324.21875}]}
+```
+
+# 配置布局
+可以通过在图像中的适当对象上设置下表的属性，或在通过第二个参数来设置属性去配置图像的布局。 而通过参数设置优先性更高。
+
+| 对象 | 属性 | 默认值 | 描述 |
+| ---- | ---- | ----| ----|
+| graph | rankdir | TB | 等级节点的方向。常见的有TB、BT、LR、RL。其中T是顶点(TOP), B是底部(Bottom), L是左边(Left)，R是右边(Right) |
+| graph | align | undefined | 节点的对齐方式。有4个值: UL,UR,DL,DR。其中U是上(UP)，D是下(down)，L是左(left)，R是右(Right) |
