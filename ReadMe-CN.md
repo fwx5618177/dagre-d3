@@ -2,6 +2,9 @@
 - [ ] [wiki-api 翻译计划](https://github.com/dagrejs/dagre/wiki#browser-scripts)  - 2020/03/16 12:11
 - [ ] [graphlib api](https://github.com/dagrejs/graphlib/wiki/API-Reference) - 2020/03/17 10:11
 
+# History
+- [X] 翻译 - 2020/03/18 20:44
+
 > 中文 | [English](ReadMe.md)
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](http://choosealicense.com/licenses/mit/)
