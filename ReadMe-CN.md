@@ -160,3 +160,31 @@ Edge lwilson -> kbacon: {"points":[{"x":440,"y":250},{"x":440,"y":275},{"x":324.
 | ---- | ---- | ----| ----|
 | graph | rankdir | TB | 等级节点的方向。常见的有TB、BT、LR、RL。其中T是顶点(TOP), B是底部(Bottom), L是左边(Left)，R是右边(Right) |
 | graph | align | undefined | 节点的对齐方式。有4个值: UL,UR,DL,DR。其中U是上(UP)，D是下(down)，L是左(left)，R是右(Right) |
+| graph | nodesep | 50 | 水平方向上, 分隔节点的距离(节点之间的间距) |
+| graph | edgesep | 10 | 在水平方向上, 线段间的距离 |
+| graph | ranksep | 50 | 每个层级间的距离 |
+| graph | marginx | 0 | 图形左右边缘的距离 |
+| graph | marginy | 0 | 图形上下边缘的距离 |
+| graph | acyclicer | undefined | 如果设置为贪婪模式(greedy), 则使用贪婪启发式来查找. 返回的弧设置是一组可以删除的线, 从而使图无环.  |
+| graph | ranker | network-simplex | 在输入的图像中, 为每个节点分配排名的算法类型. 可选值: network-simplex, tight-tree, longest-path |
+| node | width | 0 | 节点的宽度(像素) |
+| node | height | 0 | 节点的高度(像素) |
+| edge | minlen | 1 | 在线的开始和结束之间保持最少的长度 |
+| edge | weight | 1 | 线的权重(宽度). 高权重的边通常比低权重的边更短更直 |
+| edge | width | 0 | 线的标签的宽度(像素) |
+| edge | height | 0 | 线标签的高度(像素) |
+| edge | labelpos | r | 根据线的位置来放置标签. l = left, c = center, r= right |
+| edge | lableoffset | 10 | 标签和线段之间的距离. 仅当labelpos为l/r时生效 |
+
+# 生成的图像
+生成的图像将会有如下属性:
+|对象|属性|描述|
+|---|---|---|
+|graph|height|整个图像的高度|
+|graph|width|整个图像的宽度|
+|node,edge|x|对节点来说，是节点中心的x坐标. 对边线来说, 是线段标签的x坐标|
+|node,edge|y|对节点来说,是节点中心的y坐标. 对边线来说,是线段标签的y坐标|
+|edge|points|由{x,y}组成的数组控制线段的控制点|
+
+# 第三部分例
+
