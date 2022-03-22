@@ -187,4 +187,29 @@ Edge lwilson -> kbacon: {"points":[{"x":440,"y":250},{"x":440,"y":275},{"x":324.
 |edge|points|由{x,y}组成的数组控制线段的控制点|
 
 # 第三部分例子
+Darge已经被一些非常酷炫的项目所包含在内。 以下是一些比较突出的例子:
+
+- [JointJS](https://www.jointjs.com/opensource)有一个插件是使用了dagre布局。这个项目聚焦在渲染和图表的交互, 这与Darge有很好的协同作用。如果你想以交互式的方式移动节点和控制边线, 这个项目很适合开始!
+
+Jonathan Mace有一个简单的[demo](http://cs.brown.edu/people/jcmace/d3/graph.html?id=small.json)，可以交互式的浏览图表。 在这个demo中, 你可以突出显示路径，折叠子图，查看详细节点信息，以及更多！
+
+- [nomnoml](http://www.nomnoml.com/)是一个在浏览器中绘制UML图表的工具。它使用带有dagre的自定义渲染器，在canvas中绘制图表。
+
+- [Cytoscape.js](http://js.cytoscape.org/)是一个功能丰富的图论库, 并且支持Dagre作为布局。推荐阅读[cytoscape-dagre](https://github.com/cytoscape/cytoscape.js-dagre)
+
+- [TensorBoard](https://www.tensorflow.org/guide/graph_viz)是一套用于检查和理解Tensorflow运行和图像的web程序。
+
+# 推荐阅读
+Darge采用了多部论文和著作的长处而成。如果你对dagre内部如何运行感兴趣, 这有些重要的文章推荐一读:
+
+- Dagre的大体骨架取自《[Gansner, et al., "A Technique for Drawing Directed Graphs"](http://www.graphviz.org/Documentation/TSE93.pdf)》。这既为层绘图中涉及的各个阶段提供了高水平的概述, 也为深入研究中每个阶段的细节和问题提供了帮助。 除了基本的骨架， 我们专门利用此文章中所描绘的技术去制作一个非循环图， 且我们使用了网络单纯形算法(a graph theoretic specialization of the simplex algorithm, 单纯形算法的图论特化)进行排序. 如果要问哪篇文章适合开始学习分层图绘制, 那非这篇文献莫属。
+
+- 为了交叉最小化, 我们使用了这篇《[Jünger and Mutzel, "2-Layer Straightline Crossing Minimization"](http://www.researchgate.net/profile/Petra_Mutzel/publication/30508315_2-Layer_Straightline_Crossing_Minimization_Performance_of_Exact_and_Heuristic_Algorithms/links/09e4150eabaf4cc7bd000000.pdf)》. 这篇文章提供了关于"各类启发式算法和交叉最小化精确算法"的对比。
+
+- 为了统计两层之间的边缘交叉数, 我们使用了`O(|E| log |V_small|)`算法。此算法的具体细节在此:《[Barth, et al., "Simple and Efficient Bilayer Cross Counting"](http://jgaa.info/accepted/2004/BarthMutzelJuenger2004.8.2.pdf)》
+
+- 为了定位或者说是坐标分配, 我们从《[Brandes and Köpf, "Fast and Simple Horizontal Coordinate Assignment"](http://www.inf.uni-konstanz.de/algo/publications/bk-fshca-01.pdf)》提取算法。 当节点和边线的大小极大时,我们做了一些调整去获取更紧凑的图像。
+
+- 聚类图的实现极大地取材于Sander的《[Layout of Compound Directed Graphs](http://scidok.sulb.uni-saarland.de/volltexte/2005/359/pdf/tr-A03-96.pdf)》。 这篇文章详细介绍了聚类图在布局所有阶段的影响, 还涵盖了许多相关问题。聚类图的交叉约减取自 Michael Forster的两篇论文: 《Applying Crossing Reduction Strategies to Layered Compound Graphs》、《A Fast and Simple Heuristic for Constrained Two-Level Crossing Reduction》
+
 
